@@ -464,8 +464,12 @@ public abstract class GraphInstanceTest {
         assertEquals(Integer.valueOf(1), graph.targets("C").get("D"));
 
         assertEquals(Integer.valueOf(1), graph.sources("B").get("A"));
-        assertEquals(Integer.valueOf(1), graph.sources("C").get("A"));
+
+        // Vertex C has TWO sources: A (weight 2) and B (weight 1)
+        assertEquals("Vertex C should have 2 sources", 2, graph.sources("C").size());
+        assertEquals(Integer.valueOf(2), graph.sources("C").get("A"));
         assertEquals(Integer.valueOf(1), graph.sources("C").get("B"));
+
         assertEquals(Integer.valueOf(1), graph.sources("D").get("C"));
         assertEquals(Integer.valueOf(3), graph.sources("D").get("B"));
     }
